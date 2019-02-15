@@ -3,15 +3,30 @@ import math
 import string
 import os
 
+def random_file_writer(num_chars):
+    file_num = "0"
+    for n in range(num_files):
+        files =  open("file" + str(file_num) + '.txt', 'w' )
+        file_num += str(1)
+        for i in range(1):
+            files.write(num_chars)
+
+def get_file_name(num):
+    num_str = hex(num)
+    num_str = num_str[2:]
+
+    return "file_" + num_str.upper().zfill(4) + ".txt"
+
+
 
 def get_file_content():
-    num_chars = 18000
-    result = ""
-    for i in range(num_chars):
-        n = random.randrange(32,127)
-        result += chr(n)
-    return(result)
+    # open file_name, read it, return the contents
 
+    
+    file_name = open('text_files/file_0000.txt', 'r')
+
+    return file_name.read()
+     
     
 def get_char_counts(result):
     counts = [0] * 127
@@ -21,16 +36,7 @@ def get_char_counts(result):
     counts = counts[32:]
     print (counts)
 
-
-def random_file_writer(num_chars):
-    file_num = "0"
-    for n in range(num_files):
-        files =  open("file" + str(file_num) + '.txt', 'w' )
-        file_num += str(1)
-        for i in range(1):
-            files.write(num_chars)
-        
-        
+   
 def chi_square(vals):
     x = 0
     expected = sum(vals)/ len(vals)
@@ -44,6 +50,9 @@ def file_read():
          file = open("file" + str(get_hex(n)) + '.txt', 'r')
          print(x)
 
+
+    
+
 #write get hex function
 
   
@@ -51,15 +60,12 @@ def file_read():
 
 
 #lets do this
-num_files = 2
+'''
+num_files = 1
 threshold = 50
 
 
-#file_names = os.listdir("C:\Users\dhamil1351\Documents\text_files")
-#print(file_names[:10])
-
-
-'''for n in range(num_files):
+for n in range(num_files):
     file_name = get_file_name(n)
     text = get_file_content("files/"+ file_name)
     counts = get_char_counts(text)
@@ -67,14 +73,15 @@ threshold = 50
 
 
     if chi_square > threshold:
-        print(file_name,chi_square)'''
+        print(file_name,chi_square)
+'''
 
-    
-get_file_content()
-vals = [4,3]
-get_char_counts(get_file_content())
+print( get_file_name(0) ) # file_0000.txt
+print( get_file_name(9) ) # file_0009.txt
+print( get_file_name(10) ) #file_000A.txt
+print( get_file_name(2342) )
+print( get_file_name(17999) )
+print( get_char_counts(get_file_content()) )
 
-print(chi_square(vals))
-random_file_writer(get_file_content())
-file_read()
+
 
